@@ -1,0 +1,167 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPNPJBgpd8gCa2Js4o8mMTj",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/vtu29606-creator/python/blob/main/Task-8\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OxuV9y_9U8eL",
+        "outputId": "2bf357be-8755-494f-eed9-3c02b36865cd"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'id': 3, 'name': 'Charlie', 'department': 'Sales'}\n"
+          ]
+        }
+      ],
+      "source": [
+        "def find_employee_by_id(employees, target_id):\n",
+        "    for employee in employees:\n",
+        "        if employee['id'] == target_id:\n",
+        "            return employee\n",
+        "    return None\n",
+        "\n",
+        "# Test the function\n",
+        "employees = [\n",
+        "    {'id': 1, 'name': 'Alice', 'department': 'HR'},\n",
+        "    {'id': 2, 'name': 'Bob', 'department': 'Engineering'},\n",
+        "    {'id': 3, 'name': 'Charlie', 'department': 'Sales'},\n",
+        "]\n",
+        "\n",
+        "print(find_employee_by_id(employees, 3))\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def bubble_sort_scores(students):\n",
+        "    n = len(students)\n",
+        "    for i in range(n):\n",
+        "        swapped = False\n",
+        "        for j in range(0, n - i - 1):\n",
+        "            if students[j]['score'] > students[j + 1]['score']:\n",
+        "                students[j], students[j + 1] = students[j + 1], students[j]\n",
+        "                swapped = True\n",
+        "        if not swapped:\n",
+        "            break\n",
+        "\n",
+        "# Example usage\n",
+        "students = [\n",
+        "    {'name': 'Alice', 'score': 88},\n",
+        "    {'name': 'Bob', 'score': 95},\n",
+        "    {'name': 'Charlie', 'score': 75},\n",
+        "    {'name': 'Diana', 'score': 85}\n",
+        "]\n",
+        "\n",
+        "print(\"Before sorting:\")\n",
+        "for student in students:\n",
+        "    print(student)\n",
+        "\n",
+        "bubble_sort_scores(students)\n",
+        "\n",
+        "print(\"\\nAfter sorting:\")\n",
+        "for student in students:\n",
+        "    print(student)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wV9fgGA_U-vE",
+        "outputId": "e9d0f89c-f5bf-4ca2-9be8-a49004d02093"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Before sorting:\n",
+            "{'name': 'Alice', 'score': 88}\n",
+            "{'name': 'Bob', 'score': 95}\n",
+            "{'name': 'Charlie', 'score': 75}\n",
+            "{'name': 'Diana', 'score': 85}\n",
+            "\n",
+            "After sorting:\n",
+            "{'name': 'Charlie', 'score': 75}\n",
+            "{'name': 'Diana', 'score': 85}\n",
+            "{'name': 'Alice', 'score': 88}\n",
+            "{'name': 'Bob', 'score': 95}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def merge_descending(list1, list2):\n",
+        "    i, j = 0, 0\n",
+        "    merged = []\n",
+        "\n",
+        "    while i < len(list1) and j < len(list2):\n",
+        "        if list1[i] >= list2[j]:\n",
+        "            merged.append(list1[i])\n",
+        "            i += 1\n",
+        "        else:\n",
+        "            merged.append(list2[j])\n",
+        "            j += 1\n",
+        "\n",
+        "    while i < len(list1):\n",
+        "        merged.append(list1[i])\n",
+        "        i += 1\n",
+        "\n",
+        "    while j < len(list2):\n",
+        "        merged.append(list2[j])\n",
+        "        j += 1\n",
+        "\n",
+        "    return merged\n",
+        "\n",
+        "# ---- Driver Code ----\n",
+        "t = int(input())   # number of test cases\n",
+        "for _ in range(t):\n",
+        "    n, m = map(int, input().split())\n",
+        "    list1 = list(map(int, input().split()))\n",
+        "    list2 = list(map(int, input().split()))\n",
+        "\n",
+        "    result = merge_descending(list1, list2)\n",
+        "    print(*result)"
+      ],
+      "metadata": {
+        "id": "reaZV_qaVDX5"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
