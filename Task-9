@@ -1,0 +1,135 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPNrMDPcjhaeBTNAqAelk5M",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/vtu29606-creator/python/blob/main/Task-9\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "T2_Yfxw7VQj8"
+      },
+      "outputs": [],
+      "source": [
+        "# Initialize the list of grades\n",
+        "grades = [85, 90, 78, 92, 88]\n",
+        "\n",
+        "# Display the grades list\n",
+        "print(\"Grades List:\", grades)\n",
+        "\n",
+        "# Prompt the user to enter the index of the grade they want to view\n",
+        "try:\n",
+        "    index = int(input(\"Enter the index of the grade you want to view: \"))\n",
+        "    # Attempt to display the grade at the specified index\n",
+        "    print(f\"The grade at index {index} is: {grades[index]}\")\n",
+        "except IndexError:\n",
+        "    # Handle the case where the index is out of range\n",
+        "    print(\"Invalid index. Please enter a valid index.\")\n",
+        "except ValueError:\n",
+        "    # Handle the case where the input is not an integer\n",
+        "    print(\"Invalid input. Please enter a numerical index.\")"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Custom Exception\n",
+        "class NegativeNumberError(Exception):\n",
+        "    pass\n",
+        "\n",
+        "try:\n",
+        "    # Take user input\n",
+        "    num1 = int(input(\"Enter the numerator: \"))\n",
+        "    num2 = int(input(\"Enter the denominator: \"))\n",
+        "\n",
+        "    # Check for negative numbers\n",
+        "    if num1 < 0 or num2 < 0:\n",
+        "        raise NegativeNumberError(\"Negative numbers are not allowed\")\n",
+        "\n",
+        "    # Perform division\n",
+        "    result = num1 / num2\n",
+        "    print(f\"Result: {num1} / {num2} = {result}\")\n",
+        "\n",
+        "except ValueError:\n",
+        "    print(\"Error: Please enter valid numeric values.\")\n",
+        "except ZeroDivisionError:\n",
+        "    print(\"Error: Division by zero is not allowed.\")\n",
+        "except NegativeNumberError as e:\n",
+        "    print(f\"Error: {e}\")\n",
+        "finally:\n",
+        "    print(\"Calculation Attempt Finished\")"
+      ],
+      "metadata": {
+        "id": "V21qlPKZVTdJ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "\n",
+        "# 1. Define custom exception\n",
+        "class EmptyFileError(Exception):\n",
+        "    pass\n",
+        "\n",
+        "filename = input(\"Enter the filename: \")\n",
+        "\n",
+        "file = None\n",
+        "try:\n",
+        "    # 3. Try opening the file\n",
+        "    file = open(filename, \"r\")\n",
+        "\n",
+        "    # 4. Check if file is empty\n",
+        "    if os.path.getsize(filename) == 0:\n",
+        "        raise EmptyFileError(\"The file is empty.\")\n",
+        "\n",
+        "    # 5. Read and process content\n",
+        "    content = file.read()\n",
+        "    words = content.split()\n",
+        "    print(f\"The file has {len(words)} words.\")\n",
+        "\n",
+        "# 6. Handle exceptions\n",
+        "except FileNotFoundError:\n",
+        "    print(\"Error: The specified file was not found.\")\n",
+        "except EmptyFileError as e:\n",
+        "    print(f\"Error: {e}\")\n",
+        "\n",
+        "# 7. Finally block\n",
+        "finally:\n",
+        "    if file:\n",
+        "        file.close()\n",
+        "    print(\"File operation completed\")"
+      ],
+      "metadata": {
+        "id": "0bpvuH3XVTjY"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
