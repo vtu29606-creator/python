@@ -1,0 +1,108 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOMo8QWWlFkGpC42C7Fc7n5",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/vtu29606-creator/python/blob/main/usecase\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hhGtHHcfXCBc",
+        "outputId": "503bf082-0fb0-4a9c-fb57-dfaea00b057a"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "🎲 Welcome to Random Simulation App 🎲\n",
+            "1. Simulate Coin Flips\n",
+            "2. Simulate Dice Rolls\n",
+            "Enter your choice (1 or 2): 1\n",
+            "Enter number of simulations: 4\n",
+            "\n",
+            "🪙 Coin Flip Results:\n",
+            "['Tails' 'Tails' 'Tails' 'Tails']\n",
+            "Heads: 0, Tails: 4\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "def simulate_coin_flips(n):\n",
+        "    \"\"\"\n",
+        "    Simulate n random coin flips using NumPy.\n",
+        "    Returns a list of 'Heads' or 'Tails'.\n",
+        "    \"\"\"\n",
+        "    outcomes = np.random.choice(['Heads', 'Tails'], size=n)\n",
+        "    return outcomes\n",
+        "\n",
+        "def simulate_dice_rolls(n):\n",
+        "    \"\"\"\n",
+        "    Simulate n random dice rolls using NumPy.\n",
+        "    Returns a list of integers between 1 and 6.\n",
+        "    \"\"\"\n",
+        "    outcomes = np.random.randint(1, 7, size=n)\n",
+        "    return outcomes\n",
+        "\n",
+        "def main():\n",
+        "    print(\"🎲 Welcome to Random Simulation App 🎲\")\n",
+        "    print(\"1. Simulate Coin Flips\")\n",
+        "    print(\"2. Simulate Dice Rolls\")\n",
+        "    choice = input(\"Enter your choice (1 or 2): \")\n",
+        "\n",
+        "    try:\n",
+        "        n = int(input(\"Enter number of simulations: \"))\n",
+        "    except ValueError:\n",
+        "        print(\"Invalid input! Please enter an integer.\")\n",
+        "        return\n",
+        "\n",
+        "    if choice == '1':\n",
+        "        results = simulate_coin_flips(n)\n",
+        "        print(\"\\n🪙 Coin Flip Results:\")\n",
+        "        print(results)\n",
+        "        print(f\"Heads: {np.count_nonzero(results == 'Heads')}, Tails: {np.count_nonzero(results == 'Tails')}\")\n",
+        "\n",
+        "    elif choice == '2':\n",
+        "        results = simulate_dice_rolls(n)\n",
+        "        print(\"\\n🎯 Dice Roll Results:\")\n",
+        "        print(results)\n",
+        "        for i in range(1, 7):\n",
+        "            print(f\"Face {i}: {np.count_nonzero(results == i)} times\")\n",
+        "\n",
+        "    else:\n",
+        "        print(\"Invalid choice! Please select 1 or 2.\")\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ]
+    }
+  ]
+}
