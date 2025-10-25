@@ -1,0 +1,383 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOUdd89OfPshfg1D4xdidRy",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/vtu29606-creator/python/blob/main/Task-3\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "20sEmEsGQLCx",
+        "outputId": "47b9ef23-7621-4bd4-9740-a15bea0b6b52"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "11\n",
+            "22\n",
+            "Less than k non-repeating characters in input.\n"
+          ]
+        }
+      ],
+      "source": [
+        "from collections import OrderedDict\n",
+        "def kthRepeating(input, k):\n",
+        "    dict = OrderedDict.fromkeys(input, 0)\n",
+        "    for ch in input:\n",
+        "        dict[ch] += 1\n",
+        "    nonRepeatDict = [key for (key, value) in dict.items() if value == 1]\n",
+        "    if len(nonRepeatDict) < k:\n",
+        "        return 'Less than k non-repeating characters in input.'\n",
+        "    else:\n",
+        "        return nonRepeatDict[k - 1]\n",
+        "inp = input()\n",
+        "k = int(input())\n",
+        "print(kthRepeating(inp, k))"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import math\n",
+        "def cosine(x, n):\n",
+        "    cosx = 1\n",
+        "    sign = -1\n",
+        "    for i in range(2, n, 2):\n",
+        "        pi = 22 / 7\n",
+        "        y = x * (pi / 180)\n",
+        "        cosx = cosx + (sign * (y ** i)) / math.factorial(i)\n",
+        "        sign = -sign\n",
+        "    return cosx\n",
+        "x = int(input())\n",
+        "n = int(input())\n",
+        "print(round(cosine(x, n), 2))\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rF3eGy1CQOk4",
+        "outputId": "7e4e61af-a6ee-4878-a6a5-01c797387464"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "20\n",
+            "28\n",
+            "0.94\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        " from dataloader import load_data\n",
+        "from statshelper import subject_mean, subject_std, subject_mode\n",
+        "import pandas as pd\n",
+        "\n",
+        "def main():\n",
+        "    df = load_data()\n",
+        "    if df is None:\n",
+        "        return  # Stop if CSV not found\n",
+        "\n",
+        "    subjects = [\"Math\", \"Science\", \"English\"]\n",
+        "    results = []\n",
+        "\n",
+        "    for subj in subjects:\n",
+        "        mean_val = subject_mean(df, subj)\n",
+        "        std_val = subject_std(df, subj)\n",
+        "        mode_val = subject_mode(df, subj)\n",
+        "        results.append([subj, mean_val, std_val, mode_val])\n",
+        "\n",
+        "    results_df = pd.DataFrame(results, columns=[\"Subject\", \"Mean\", \"Standard Deviation\", \"Mode\"])\n",
+        "    print(\"\\n📊 Subject Statistics:\\n\")\n",
+        "    print(results_df)\n",
+        "\n",
+        "    # Optional: Save to a new CSV file\n",
+        "    results_df.to_csv(\"subject_statistics.csv\", index=False)\n",
+        "    print(\"\\n✅ Results saved to 'subject_statistics.csv'\")\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "CIrAhfhPQY1l",
+        "outputId": "253ef103-682c-4e16-b40e-88312ca27f7f"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "📊 Subject Statistics:\n",
+            "\n",
+            "   Subject  Mean  Standard Deviation  Mode\n",
+            "0     Math  86.0            7.720104    72\n",
+            "1  Science  82.6           10.031949    65\n",
+            "2  English  85.4            8.890444    70\n",
+            "\n",
+            "✅ Results saved to 'subject_statistics.csv'\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "e9379cf9"
+      },
+      "source": [
+        "# Create students.csv\n",
+        "with open('students.csv', 'w') as f:\n",
+        "    f.write('Name,Age,Math,Science,English\\n')\n",
+        "    f.write('Alice,20,85,78,92\\n')\n",
+        "    f.write('Bob,21,90,88,84\\n')\n",
+        "    f.write('Charlie,20,72,65,70\\n')\n",
+        "    f.write('David,22,95,92,96\\n')\n",
+        "    f.write('Eva,21,88,90,85\\n')"
+      ],
+      "execution_count": 9,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bc86ecc6",
+        "outputId": "785f04bf-90b3-44ec-8eb8-15f557b5cd60"
+      },
+      "source": [
+        "# Create dataloader.py\n",
+        "%%writefile dataloader.py\n",
+        "import pandas as pd\n",
+        "def load_data():\n",
+        "    df = pd.read_csv(\"students.csv\")\n",
+        "    return df"
+      ],
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Overwriting dataloader.py\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5b25962c",
+        "outputId": "25baf4b9-0bbf-49f7-f008-6cf94877e348"
+      },
+      "source": [
+        "# Create statshelper.py\n",
+        "%%writefile statshelper.py\n",
+        "import numpy as np\n",
+        "from scipy import stats\n",
+        "def subject_mean(df, subject):\n",
+        "    return np.mean(df[subject])\n",
+        "def subject_std(df, subject):\n",
+        "    return np.std(df[subject])\n",
+        "def subject_mode(df, subject):\n",
+        "    return stats.mode(df[subject], keepdims=True).mode[0]"
+      ],
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Writing statshelper.py\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "e915e111"
+      },
+      "source": [
+        "# Create students.csv\n",
+        "with open('students.csv', 'w') as f:\n",
+        "    f.write('Name,Age,Math,Science,English\\n')\n",
+        "    f.write('Alice,20,85,78,92\\n')\n",
+        "    f.write('Bob,21,90,88,84\\n')\n",
+        "    f.write('Charlie,20,72,65,70\\n')\n",
+        "    f.write('David,22,95,92,96\\n')\n",
+        "    f.write('Eva,21,88,90,85\\n')"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1bc71726"
+      },
+      "source": [
+        "# Create students.csv\n",
+        "with open('students.csv', 'w') as f:\n",
+        "    f.write('Name,Age,Math,Science,English\\n')\n",
+        "    f.write('Alice,20,85,78,92\\n')\n",
+        "    f.write('Bob,21,90,88,84\\n')\n",
+        "    f.write('Charlie,20,72,65,70\\n')\n",
+        "    f.write('David,22,95,92,96\\n')\n",
+        "    f.write('Eva,21,88,90,85\\n')"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "93f13e65",
+        "outputId": "aeea9ab0-a898-40f4-99d1-7751e62c08c9"
+      },
+      "source": [
+        "# Create dataloader.py\n",
+        "%%writefile dataloader.py\n",
+        "import pandas as pd\n",
+        "def load_data():\n",
+        "    df = pd.read_csv(\"students.csv\")\n",
+        "    return df"
+      ],
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Writing dataloader.py\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "5a065fec"
+      },
+      "source": [
+        "# Create statshelper.py\n",
+        "%%writefile statshelper.py\n",
+        "import numpy as np\n",
+        "from scipy import stats\n",
+        "def subject_mean(df, subject):\n",
+        "    return np.mean(df[subject])\n",
+        "def subject_std(df, subject):\n",
+        "    return np.std(df[subject])\n",
+        "def subject_mode(df, subject):\n",
+        "    return stats.mode(df[subject], keepdims=True).mode[0]"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "data = pd.DataFrame({\n",
+        "    'Product': ['Laptop', 'Headphones', 'Mouse', 'Keyboard'] * 5,\n",
+        "    'Units_Sold': np.random.randint(5, 50, 20),\n",
+        "    'Price_per_Unit': np.random.randint(1000, 5000, 20)\n",
+        "})\n",
+        "data['Total_Sales'] = data['Units_Sold'] * data['Price_per_Unit']\n",
+        "top_product = data.groupby('Product')['Total_Sales'].sum().idxmax()\n",
+        "total_sales = data['Total_Sales'].sum()\n",
+        "print(\"Top Selling Product:\", top_product)\n",
+        "print(\"Total Sales: ₹\", total_sales)\n",
+        "print(\"\\nSample Data:\\n\", data)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wffUdhg5QbHB",
+        "outputId": "b1c0955c-d98c-489c-ef41-a8ddb45a2a8a"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Top Selling Product: Laptop\n",
+            "Total Sales: ₹ 1715208\n",
+            "\n",
+            "Sample Data:\n",
+            "        Product  Units_Sold  Price_per_Unit  Total_Sales\n",
+            "0       Laptop          26            3823        99398\n",
+            "1   Headphones          48            3739       179472\n",
+            "2        Mouse          30            1520        45600\n",
+            "3     Keyboard          17            4225        71825\n",
+            "4       Laptop          47            2755       129485\n",
+            "5   Headphones          36            1357        48852\n",
+            "6        Mouse          28            1834        51352\n",
+            "7     Keyboard          21            1924        40404\n",
+            "8       Laptop          40            2924       116960\n",
+            "9   Headphones          30            1689        50670\n",
+            "10       Mouse          16            1564        25024\n",
+            "11    Keyboard          17            4854        82518\n",
+            "12      Laptop          35            2918       102130\n",
+            "13  Headphones          34            2165        73610\n",
+            "14       Mouse          22            1535        33770\n",
+            "15    Keyboard          26            2541        66066\n",
+            "16      Laptop          24            4314       103536\n",
+            "17  Headphones          15            4280        64200\n",
+            "18       Mouse          48            4495       215760\n",
+            "19    Keyboard          28            4092       114576\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
