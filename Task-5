@@ -1,0 +1,166 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNTi5iA25u0L73m7CwnIlaJ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/vtu29606-creator/python/blob/main/Task-5\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RbQzYW79Rt_X",
+        "outputId": "fdb4a7f0-e824-49dd-dd9e-151c68f477fd"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[10, 20, 30]\n",
+            "[10, 30]\n",
+            "[30]\n",
+            "[5, 8, 9, 15, 30, 89]\n",
+            "The minimum value is: 5\n",
+            "The maximum value is: 89\n",
+            "The sum is: 156\n",
+            "The average is: 26.0\n"
+          ]
+        }
+      ],
+      "source": [
+        "list = [10, 20]\n",
+        "a = 30\n",
+        "list.append(a)\n",
+        "print(list)\n",
+        "\n",
+        "list.pop(1)\n",
+        "print(list)\n",
+        "list.remove(10)\n",
+        "print(list)\n",
+        "\n",
+        "l = [5, 8, 9, 15, 30, 89]\n",
+        "print(sorted(l))\n",
+        "print(\"The minimum value is:\", min(l))\n",
+        "print(\"The maximum value is:\", max(l))\n",
+        "print(\"The sum is:\", sum(l))\n",
+        "print(\"The average is:\", (sum(l) / len(l)))\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tuple1 = (10, 'hello', 3.14, 'world')\n",
+        "print(tuple1)\n",
+        "\n",
+        "for i in tuple1:\n",
+        "    print(i)\n",
+        "\n",
+        "print(tuple1[1:3])\n",
+        "print(tuple1[:-1])\n",
+        "\n",
+        "t2 = (5, 0.5)\n",
+        "t3 = tuple1 + t2\n",
+        "print(t3)\n",
+        "\n",
+        "try:\n",
+        "    tuple1[3] = \"PI\"\n",
+        "except TypeError as e:\n",
+        "    print(\"Error:\", e)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "o0RLebnJRymb",
+        "outputId": "e696cea7-f0ed-4f5f-8140-d261a0c0cfd0"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(10, 'hello', 3.14, 'world')\n",
+            "10\n",
+            "hello\n",
+            "3.14\n",
+            "world\n",
+            "('hello', 3.14)\n",
+            "(10, 'hello', 3.14)\n",
+            "(10, 'hello', 3.14, 'world', 5, 0.5)\n",
+            "Error: 'tuple' object does not support item assignment\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "dictionary = {'name': 'Alice', 'age': 30, 'city': 'New York'}\n",
+        "print(dictionary)\n",
+        "\n",
+        "print(dictionary['name'])\n",
+        "print(dictionary['age'])\n",
+        "\n",
+        "dictionary['name'] = \"James\"\n",
+        "print(dictionary)\n",
+        "dictionary.pop('city')\n",
+        "print(dictionary)\n",
+        "\n",
+        "for k in dictionary:\n",
+        "    print(\"KEY:\", k)\n",
+        "\n",
+        "print(dictionary.items())\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "t5DvRbpkR3Pk",
+        "outputId": "18d1a020-6750-4670-9ecc-7304b98111f1"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'name': 'Alice', 'age': 30, 'city': 'New York'}\n",
+            "Alice\n",
+            "30\n",
+            "{'name': 'James', 'age': 30, 'city': 'New York'}\n",
+            "{'name': 'James', 'age': 30}\n",
+            "KEY: name\n",
+            "KEY: age\n",
+            "dict_items([('name', 'James'), ('age', 30)])\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
